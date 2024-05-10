@@ -56,7 +56,6 @@
                     <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">{{__("Pages")}}</span>
                 </h3>
                 <ul class="mt-3">
-             
                     <!-- tableau de board -->
                          <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" x-data="{ open: true }">
                             <a class="block text-slate-200 transition duration-150" :class="open ? 'hover:text-slate-200' : 'hover:text-white'" href="{{route("dashboard")}}" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
@@ -87,19 +86,14 @@
                                                             
                                     </li>
                                     <li class="mb-1 last:mb-0">
-
-    
                                             <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href="#" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                                 <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{__("Films")}}</span>
-                                            </a>
-                                                                
+                                            </a>                       
                                     </li>
                                     <li class="mb-1 last:mb-0">
-                      
                                             <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href="#" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                                 <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{__("Catégories")}}</span>
                                             </a>
-                                  
                                     </li>
                                
                                 </ul>
