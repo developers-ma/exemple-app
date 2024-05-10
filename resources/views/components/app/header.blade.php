@@ -27,7 +27,7 @@
                  <!-- Logo -->
                  <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('films.index') }}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>

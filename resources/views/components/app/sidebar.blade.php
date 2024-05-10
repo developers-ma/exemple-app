@@ -27,7 +27,7 @@
                 </svg>
             </button>
             <!-- Logo -->
-            <a class="block" href="{{ route('dashboard') }}">
+            <a class="block" href="{{ route('films.index') }}">
                 <svg width="32" height="32" viewBox="0 0 32 32">
                     <defs>
                         <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
@@ -58,13 +58,13 @@
                 <ul class="mt-3">
                     <!-- tableau de board -->
                          <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" x-data="{ open: true }">
-                            <a class="block text-slate-200 transition duration-150" :class="open ? 'hover:text-slate-200' : 'hover:text-white'" href="{{route("dashboard")}}" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                            <a class="block text-slate-200 transition duration-150" :class="open ? 'hover:text-slate-200' : 'hover:text-white'" href="{{route("films.index")}}" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
                                         <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                                            <path class="fill-current @if(in_array(Request::segment(1), ['dashboard'])){{ 'text-indigo-500' }}@else{{ 'text-slate-400' }}@endif" d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
-                                            <path class="fill-current @if(in_array(Request::segment(1), ['dashboard'])){{ 'text-indigo-600' }}@else{{ 'text-slate-600' }}@endif" d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z" />
-                                            <path class="fill-current @if(in_array(Request::segment(1), ['dashboard'])){{ 'text-indigo-200' }}@else{{ 'text-slate-400' }}@endif" d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z" />
+                                            <path class="fill-current @if(in_array(Request::segment(1), ['films.index'])){{ 'text-indigo-500' }}@else{{ 'text-slate-400' }}@endif" d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
+                                            <path class="fill-current @if(in_array(Request::segment(1), ['films.index'])){{ 'text-indigo-600' }}@else{{ 'text-slate-600' }}@endif" d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z" />
+                                            <path class="fill-current @if(in_array(Request::segment(1), ['films.index'])){{ 'text-indigo-200' }}@else{{ 'text-slate-400' }}@endif" d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z" />
                                         </svg>
                                         <span class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{__("Tableau de bord")}}</span>
                                     </div>
@@ -79,25 +79,18 @@
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1" :class="{ 'hidden': !open }" x-cloak>
                                     <li class="mb-1 last:mb-0">
-
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href="#" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
-                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{__("Tendances")}}</span>
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href="{{ route('films.index') }}">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{ __("Tendances") }}</span>
                                         </a>
-                                                            
                                     </li>
                                     <li class="mb-1 last:mb-0">
-                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href="#" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
-                                                <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{__("Films")}}</span>
-                                            </a>                       
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href="{{ route('categories.index') }}">
+                                            <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{ __("Catégories") }}</span>
+                                        </a>
                                     </li>
-                                    <li class="mb-1 last:mb-0">
-                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate" href="#" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
-                                                <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{__("Catégories")}}</span>
-                                            </a>
-                                    </li>
-                               
                                 </ul>
                             </div>
+                            
                         </li>
                     <!-- profile  -->
                     <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" x-data="{ open: false }">
