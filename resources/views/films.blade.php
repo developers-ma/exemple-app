@@ -1,25 +1,7 @@
 <x-app-layout>
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto" style="position: relative; display: inline-grid; width: 100%; max-width: 900px;">
         
- 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>genre id</th>
-                    <th>genre name</th>
-              
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($genres as $genre)
-                <tr>
-                    <td>{{ $genre->genre_id }}</td>
-                    <td>{{ $genre->name }}</td>
 
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
 
  
                 <h1>Films</h1>
