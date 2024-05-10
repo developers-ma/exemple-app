@@ -31,3 +31,5 @@ sail debug migrate
 salaheddine@developer.ma
 
 password : 12345678
+
+## ./vendor/bin/sail artisan tinker

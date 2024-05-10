@@ -10,18 +10,43 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
         @livewireStyles
+
+        <script>
+            if (localStorage.getItem('dark-mode') === 'false' || !('dark-mode' in localStorage)) {
+                document.querySelector('html').classList.remove('dark');
+                document.querySelector('html').style.colorScheme = 'light';
+            } else {
+                document.querySelector('html').classList.add('dark');
+                document.querySelector('html').style.colorScheme = 'dark';
+            }
+        </script>
     </head>
-    <body class="font-sans antialiased">
+    <body  class="font-inter antialiased bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400"
+    :class="{ 'sidebar-expanded': sidebarExpanded }"
+    x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"
+    x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))"  >
+
+        <script>
+            if (localStorage.getItem('sidebar-expanded') == 'true') {
+                document.querySelector('body').classList.add('sidebar-expanded');
+            } else {
+                document.querySelector('body').classList.remove('sidebar-expanded');
+            }
+        </script>
+
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+            {{-- @livewire('navigation-menu') --}}
+
+            <x-app.header />
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -31,6 +56,8 @@
                     </div>
                 </header>
             @endif
+
+            <x-app.sidebar />
 
             <!-- Page Content -->
             <main>
