@@ -7,10 +7,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($genres as $genre)
+        @foreach ($categories as $categorie)
         <tr>
-            <td>{{ $genre->genre_id }}</td>
-            <td>{{ $genre->name }}</td>
+            <td>{{ $categorie->genre_id }}</td>
+            <td>{{ $categorie->name }}</td>
 
         </tr>
         @endforeach

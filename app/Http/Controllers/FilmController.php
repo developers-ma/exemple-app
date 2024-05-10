@@ -12,10 +12,8 @@ class FilmController extends Controller
 {
     public function index()
     {
-        $genres = Genre::paginate(10);
-
         $films = Film::paginate(10);
-        return view('films', compact('films','genres'));
+        return view('films', compact('films'));
     }
 
     public function fetchAndStore()
