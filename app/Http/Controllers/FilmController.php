@@ -11,7 +11,7 @@ class FilmController extends Controller
     public function index()
     {
         $films = Film::all();
-        return view('films.index', compact('films'));
+        return view('films', compact('films'));
     }
 
     public function fetchAndStore()
