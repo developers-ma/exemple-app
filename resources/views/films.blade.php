@@ -1,21 +1,55 @@
-<div class="container">
-    <h1>Films</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($films as $film)
-            <tr>
-                <td>{{ $film->title }}</td>
-                <td>{{ $film->description }}</td>
-                <td><img src="{{ $film->image_url }}" alt="{{ $film->title }}" style="max-width: 100px;"></td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+<x-app-layout>
+    <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto" style="position: relative; display: inline-grid; width: 100%; max-width: 900px;">
+        
+ 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>genre id</th>
+                    <th>genre name</th>
+              
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($genres as $genre)
+                <tr>
+                    <td>{{ $genre->genre_id }}</td>
+                    <td>{{ $genre->name }}</td>
+
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+ 
+                <h1>Films</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Categories id </th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($films as $film)
+                        <tr>
+                            <td>{{ $film->title }}</td>
+                            <td>{{ $film->description }}</td>
+                            <td>{{ $film->genre_ids }}</td>
+                            <td><img src="{{ $film->image_url }}" alt="{{ $film->title }}" style="max-width: 100px;"></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+   
+            
+             {{ $films->links() }}
+
+
+
+    </div>
+
+    
+</x-app-layout>

@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Genre;
+
 use App\Services\TMDBService;
 
 class FilmController extends Controller
 {
     public function index()
     {
-        $films = Film::all();
-        return view('films', compact('films'));
+        $genres = Genre::paginate(10);
+
+        $films = Film::paginate(10);
+        return view('films', compact('films','genres'));
     }
 
     public function fetchAndStore()
@@ -20,14 +24,48 @@ class FilmController extends Controller
         $films = $tmdbService->getTrendingMovies();
     
         foreach ($films as $film) {
-            Film::updateOrCreate(
-                ['movie_id' => $film['id']], // Assuming $film['id'] contains TMDb movie ID
-                ['title' => $film['title'], 'description' => $film['description'], 'image_url' => $film['image_url']]
+            // Update or create the film
+            $newMovie = Film::updateOrCreate(
+                ['movie_id' => $film->movie_id], // Assuming $film->movie_id contains TMDb movie ID
+                [
+                    'title' => $film->title,
+                    'description' => $film->description,
+                    'image_url' => $film->image_url,
+                    'genre_ids' => $film->genre_ids // Assuming you have this property in the Film model
+                ]
             );
         }
-    
+
+
+        //genres
+
+        $tmdb_genres = new TMDBService();
+        $genresFromApi = $tmdb_genres->getMovieGenres();
+        
+        if (empty($genresFromApi)) {
+            // Handle case when no genres are fetched from the API
+            return false;
+        }
+        
+        foreach ($genresFromApi as $genreData) {
+            // Check if the 'id' and 'name' fields exist in the data
+            if (isset($genreData['genre_id']) && isset($genreData['name'])) {
+                // Check if the genre already exists in the database
+                $existingGenre = Genre::where('genre_id', $genreData['genre_id'])->first();
+        
+                if (!$existingGenre) {
+                    // Genre doesn't exist, create a new one
+                    $newGenre = new Genre();
+                    $newGenre->genre_id = $genreData['genre_id']; // Assuming 'genre_id' is the correct column name
+                    $newGenre->name = $genreData['name'];
+                    $newGenre->save();
+                }
+            }
+        }
         return redirect()->route('films.index')->with('success', 'Films récupérés et enregistrés avec succès.');
     }
+    
+    
     
     public function edit($movie_id)
     {

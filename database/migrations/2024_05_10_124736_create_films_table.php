@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('movie_id')->unique();
+            $table->json('genre_ids');
             $table->string('title');
             $table->text('description');
             $table->string('image_url');

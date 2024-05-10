@@ -57,12 +57,18 @@
                 </header>
             @endif
 
+            
+
+
+           
+                
+        <!-- Page Content -->
+        <main style="position: relative; display: flex;">
             <x-app.sidebar />
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            {{ $slot }}
+        </main>
+      
         </div>
 
         @stack('modals')
