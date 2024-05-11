@@ -3966,6 +3966,8 @@ span.flatpickr-weekday {
     display: flex;
     justify-content: center;
     text-align: center;
+    width: 100%;
+    min-width: 300px;
 }
 
 .film-frame {
@@ -3986,7 +3988,8 @@ span.flatpickr-weekday {
     display: inline-grid;
     width: 100%;
     margin-left: 190px;
-    margin-top: 60px;
+    margin-top: 120px;
+    margin-bottom: 160px;
 }
 
 .simple-btn {
@@ -3994,13 +3997,84 @@ span.flatpickr-weekday {
     color: #000;
     width: 100%;
     padding: 6px;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 12px;
+}
+.simple-btn:hover {
+    opacity: 0.9;
+}
+#sidebar {
+    height: 100%;
+    position: fixed;
+}
+.films-page-title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 40px !important;
+    margin: 12px;
+}
+.dataTables_filter {
+    position: relative;
+    margin-bottom: 50px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    margin: 20px;
+}
+.green-btn-goandev {
+    position: relative;
+    background: #4caf50;
+    color: #fff;
+    padding: 12px;
+    width: 150px;
+    border-radius: 15px;
+    margin-left: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.green-btn-goandev:hover {
+    opacity: 0.9;
+}
+
+.alert-success {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    color: #000000;
+    font-weight: 900;
+    font-size: 20px;
+    padding: 16px;
+    background: #4caf5052;
+    border: #4caf50;
+    border-radius: 25px;
 }
 /*media query */
 @media (max-width: 765px) {
     .square-crop {
         width: 100% !important;
-        height: 300px;
+        height: 500px;
         overflow: hidden;
+    }
+    .films-page-title {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 40px !important;
+        margin: 12px;
+        transform: scale(0.8);
     }
 }
 @media (max-width: 1025px) {
@@ -4018,5 +4092,13 @@ span.flatpickr-weekday {
         flex-wrap: wrap;
         min-width: 300px;
         max-width: 400px;
+        padding: 0px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .md\:grid-cols-3 {
+        grid-template-columns: unset !important;
+        margin-left: 340px !important;
     }
 }

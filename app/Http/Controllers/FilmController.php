@@ -16,6 +16,14 @@ class FilmController extends Controller
         return view('films', compact('films'));
     }
 
+    
+    public function details(Request $request, $id){
+        $filmDetail = Film::find($id); 
+        return view('details', compact('filmDetail'));
+    }
+    
+    
+
     public function fetchAndStore()
     {
         $tmdbService = new TMDBService();
@@ -65,9 +73,9 @@ class FilmController extends Controller
     
     
     
-    public function edit($movie_id)
+    public function edit($id)
     {
-        $film = Film::where('movie_id', $movie_id)->firstOrFail();
+        $film = Film::where('id', $id)->firstOrFail();
         return view('films.edit', compact('film'));
     }
     
