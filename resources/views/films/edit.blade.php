@@ -54,7 +54,7 @@
 
                                      <!--description-->
                                     <p style="position: relative; max-width: 300px;">
-                                        <textarea class="form-control" style="width: 100%; max-width: 600px;border: 1px solid #4CAF50;" id="description" name="description" rows="10" cols="50" required>{{ $film->description }}</textarea>
+                                        <textarea class="form-control" style="width: 100%; max-width: 600px;border: 1px solid #4CAF50;" id="description" name="description" rows="10" cols="50" placeholder="Description*" required>{{ $film->description }}</textarea>
                                     
                                     </p>
 

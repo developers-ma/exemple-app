@@ -41,13 +41,14 @@
                         <tr>
                             <td class="film-frame" style="max-width: 700px!important;">
 
-                                <div style="position: relative;display: flex;margin:20px;width:100%;flex-wrap: wrap;justify-content: center;align-items: center;">
+                                <div style="position: relative;display: flex;margin:20px;width:100%;flex-wrap: wrap;justify-content: center;align-items: flex-start;">
                                 <div class="square-crop">
                                 <img src="{{ $filmDetail->image_url }}" alt="{{ $filmDetail->title }}">
                                 </div>
                                 <!--btns-->
-                                <div style="position: relative; margin: 14px;">
-                                     <!--categories-->
+                                <div class="film-description">
+                                     <!--description-->
+                                    <h2 style="position: relative;font-size:20px;font-weight:900;margin-bottom:30px;"> {{__("Description :")}}</h2>
                                     <p style="position: relative; max-width: 300px;">{{$filmDetail->description}} </p>
 
                                 </div>
@@ -60,10 +61,6 @@
                     </tbody>
                 </table>
    
-            
-                <div id="paginationContainer"></div>
-
-
 
     </div>
 
