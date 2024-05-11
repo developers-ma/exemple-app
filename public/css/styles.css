@@ -3946,6 +3946,11 @@ span.flatpickr-weekday {
     justify-content: center;
 }
 
+#categories-table_wrapper {
+    position: relative;
+    display: inline-grid;
+    justify-content: center;
+}
 .square-crop {
     width: 300px; /* Adjust as needed */
     height: 300px; /* Adjust as needed */
@@ -3968,6 +3973,7 @@ span.flatpickr-weekday {
     text-align: center;
     width: 100%;
     min-width: 300px;
+    max-width: 300px;
 }
 
 .film-frame {
@@ -3990,6 +3996,7 @@ span.flatpickr-weekday {
     margin-left: 190px;
     margin-top: 120px;
     margin-bottom: 160px;
+    justify-content: center;
 }
 
 .simple-btn {
@@ -4002,7 +4009,7 @@ span.flatpickr-weekday {
     text-align: center;
     flex-wrap: nowrap;
     justify-content: center;
-    margin: 12px;
+    margin-bottom: 12px;
 }
 .simple-btn:hover {
     opacity: 0.9;
@@ -4021,6 +4028,14 @@ span.flatpickr-weekday {
     margin-bottom: 40px !important;
     margin: 12px;
 }
+.film-section {
+    position: relative;
+    display: flex;
+    margin: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 .dataTables_filter {
     position: relative;
     margin-bottom: 50px;
@@ -4034,7 +4049,7 @@ span.flatpickr-weekday {
     background: #4caf50;
     color: #fff;
     padding: 12px;
-    width: 150px;
+    width: 180px;
     border-radius: 15px;
     margin-left: 15px;
     font-weight: 400;
@@ -4057,6 +4072,16 @@ span.flatpickr-weekday {
     background: #4caf5052;
     border: #4caf50;
     border-radius: 25px;
+}
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    color: inherit;
+    margin-left: 3px;
+    border-radius: 25px !important;
+    width: 250px !important;
 }
 /*media query */
 @media (max-width: 765px) {

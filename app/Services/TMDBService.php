@@ -13,7 +13,7 @@ class TMDBService
 
         $response = $client->request('GET', 'https://api.themoviedb.org/3/trending/all/day?language=en-US', [
             'headers' => [
-                'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjJkNjNjZGRjMDY2ZDk5ZWQzZTgwNmQzMjY3MThjYSIsInN1YiI6IjYyNGVhNTRhYjc2Y2JiMDA2ODIzODc4YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zuuBq1c63XpADl8SQ_c62hezeus7VibE1w5Da5UdYyo',
+                'Authorization' => 'Bearer ' . env('MOVIEDB_API_KEY'),
                 'accept' => 'application/json',
             ],
         ]);
@@ -57,7 +57,7 @@ class TMDBService
     try {
         $response_genres = $allGenres->request('GET', 'https://api.themoviedb.org/3/genre/movie/list?language=en', [
             'headers' => [
-                'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjJkNjNjZGRjMDY2ZDk5ZWQzZTgwNmQzMjY3MThjYSIsInN1YiI6IjYyNGVhNTRhYjc2Y2JiMDA2ODIzODc4YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zuuBq1c63XpADl8SQ_c62hezeus7VibE1w5Da5UdYyo',
+                'Authorization' => 'Bearer ' . env('MOVIEDB_API_KEY'),
                 'accept' => 'application/json',
             ],
         ]);
