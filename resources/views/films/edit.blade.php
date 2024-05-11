@@ -42,7 +42,7 @@
                         <div>
                             <div class="film-frame" style="max-width: 700px!important;">
 
-                                <div style="position: relative;display: flex;margin:20px;width;100%;flex-wrap: wrap;justify-content: center;">
+                                <div style="position: relative;display: flex;margin:20px;width;100%;flex-wrap: wrap;justify-content: center;align-items: center;">
                                 <div class="square-crop">
                                 <img src="{{ $film->image_url }}" alt="{{ $film->title }}">
 

@@ -68,7 +68,7 @@ class FilmController extends Controller
                 }
             }
         }
-        return redirect()->route('films.index')->with('success', 'Films récupérés et enregistrés avec succès.');
+        return redirect()->route('films.index')->with('success', 'Films récupérés depuis l\'API et enregistrés avec succès.');
     }
     
     

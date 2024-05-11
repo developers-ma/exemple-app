@@ -3955,6 +3955,7 @@ span.flatpickr-weekday {
     width: 300px; /* Adjust as needed */
     height: 300px; /* Adjust as needed */
     overflow: hidden;
+    border-radius: 25px;
 }
 
 .square-crop img {
@@ -3994,7 +3995,7 @@ span.flatpickr-weekday {
     display: inline-grid;
     width: 100%;
     margin-left: 190px;
-    margin-top: 120px;
+    margin-top: 100px;
     margin-bottom: 160px;
     justify-content: center;
 }
@@ -4021,7 +4022,7 @@ span.flatpickr-weekday {
 .films-page-title {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     font-size: 40px;
     font-weight: 900;
     text-transform: uppercase;
@@ -4034,7 +4035,7 @@ span.flatpickr-weekday {
     margin: 20px;
     width: 100%;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .dataTables_filter {
     position: relative;
@@ -4064,14 +4065,17 @@ span.flatpickr-weekday {
 .alert-success {
     display: flex;
     justify-content: center;
-    max-width: 500px;
     color: #000000;
     font-weight: 900;
     font-size: 20px;
-    padding: 16px;
+    padding: 20px;
     background: #4caf5052;
     border: #4caf50;
     border-radius: 25px;
+    width: max-content;
+    width: 100%;
+    margin: 15px;
+    text-align: center;
 }
 .dataTables_wrapper .dataTables_filter input {
     border: 1px solid #aaa;
