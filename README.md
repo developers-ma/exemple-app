@@ -9,6 +9,16 @@
 
 Voir [la documentation](https://developer.themoviedb.org/reference/trending-all)
 
+## Live demo
+
+https://framework.developer.ma/
+
+-   Password :
+
+```
+12345678
+```
+
 ## Important
 
 -   Avant de lancer l’application, vérifiez que Docker Desktop est installé sur votre ordinateur.
