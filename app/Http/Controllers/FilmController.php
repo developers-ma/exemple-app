@@ -79,7 +79,7 @@ class FilmController extends Controller
         return view('films.edit', compact('film'));
     }
     
-    public function update(Request $request, $movie_id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
@@ -87,18 +87,18 @@ class FilmController extends Controller
             'image_url' => 'required|url',
         ]);
     
-        $film = Film::where('movie_id', $movie_id)->firstOrFail();
+        $film = Film::where('id', $id)->firstOrFail();
         $film->update($request->all());
     
-        return redirect()->route('films.index')->with('success', 'Film updated successfully.');
+        return redirect()->route('films.index')->with('success', 'Film mis à jour avec succès.');
     }
     
     public function destroy($movie_id)
     {
-        $film = Film::where('movie_id', $movie_id)->firstOrFail();
+        $film = Film::where('id', $movie_id)->firstOrFail();
         $film->delete();
     
-        return redirect()->route('films.index')->with('success', 'Film deleted successfully.');
+        return redirect()->route('films.index')->with('success', 'Film supprimé avec succès.');
     }
     
 }

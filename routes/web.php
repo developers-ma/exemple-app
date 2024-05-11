@@ -17,7 +17,7 @@ Route::middleware([
     Route::get('/fetch-and-store-films', [FilmController::class, 'fetchAndStore'])->name('films.fetchAndStore');
 
     Route::get('/film/{id}', [FilmController::class, 'details'])->name('film.details');
-    Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('films.edit');
-    Route::put('/film/{id}', [FilmController::class, 'update'])->name('films.update');
-    Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('films.destroy');
+    Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');
+    Route::put('/film/{id}', [FilmController::class, 'update'])->name('film.update');
+    Route::delete('/film/{id}', [FilmController::class, 'destroy'])->name('film.destroy');
 });
