@@ -13,6 +13,12 @@ Voir [la documentation](https://developer.themoviedb.org/reference/trending-all)
 
 https://framework.developer.ma/
 
+-   Email :
+
+```
+salaheddine@developer.ma
+```
+
 -   Password :
 
 ```
@@ -44,6 +50,7 @@ php artisan make:command FetchAndStoreFilms
 
 ## Table des matières
 
+-   [Live demo](#Live-demo)
 -   [Important](#Important)
 -   [Déployer](#Déployer)
 -   [Importer les films depuis API](#Importer-les-films-depuis-API)
