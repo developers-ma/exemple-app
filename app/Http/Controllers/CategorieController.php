@@ -9,7 +9,7 @@ class CategorieController extends Controller
 {
     public function index()
     {
-        $categories = Genre::paginate(10);
+        $categories = Genre::all();
         return view('categories', compact('categories'));
     }
 }
