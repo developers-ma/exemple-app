@@ -41,7 +41,7 @@
                         @foreach ($films as $film)
                         <tr>
                             <td class="film-frame">
-
+								<span style="display:none"> {{$film->id}}</span>
                                 <div class="film-section">
                                     <div class="square-crop">
                                     <img src="{{ $film->image_url }}" alt="{{ $film->title }}">
