@@ -42,7 +42,7 @@
                             <td class="film-frame" style="max-width: 700px!important;">
 
                                 <div style="position: relative;display: flex;margin:20px;width:100%;flex-wrap: wrap;justify-content: center;align-items: flex-start;">
-                                <div class="square-crop">
+                                <div class="square-crop" style="height:auto!important">
                                 <img src="{{ $filmDetail->image_url }}" alt="{{ $filmDetail->title }}">
                                 </div>
                                 <!--btns-->
