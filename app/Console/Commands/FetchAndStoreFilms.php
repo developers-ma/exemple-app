@@ -18,13 +18,14 @@ class FetchAndStoreFilms extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Fetch and store films';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        //
+        // Call the fetchAndStore() method here
+        \App::make(\App\Http\Controllers\FilmController::class)->fetchAndStore();
     }
 }

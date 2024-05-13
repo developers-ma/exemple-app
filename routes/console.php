@@ -9,4 +9,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 
-Schedule::command('films:fetch-and-store')->daily();
+Schedule::command('films:fetch-and-store-films')->everyMinute();

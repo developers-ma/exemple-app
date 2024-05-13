@@ -126,7 +126,8 @@
         var paginationContainer = document.getElementById('paginationContainer');
         
     });
-  
+
+
   </script>
 
 </x-app-layout>
