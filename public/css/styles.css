@@ -4093,6 +4093,20 @@ span.flatpickr-weekday {
     border-radius: 25px !important;
     width: 250px !important;
 }
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #1e293b !important;
+    background: #fff !important;
+    padding-left: 45px !important;
+    padding-right: 15px !important;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    color: inherit;
+    margin-left: 3px;
+    border-radius: 25px !important;
+    width: 250px !important;
+}
 /*media query */
 @media (max-width: 765px) {
     .square-crop {
