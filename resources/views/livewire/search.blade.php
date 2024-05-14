@@ -30,24 +30,26 @@
     </h1>
 
 <div>
-    <div class="p-4" style="position: relative; display: flex; justify-content: center;flex-wrap: wrap;align-items: center;">
-        <form style="margin-top:12px">
+    <div class="p-4" style="position: relative; display: flex; justify-content: start; flex-wrap: wrap; align-items: start; margin: 12px;">
+       <!-- Formulaire de recherche -->
+        <form style="margin-top: 12px; margin-left: 13px;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 20px; position: absolute; margin-top: 10px; margin-left: 10px;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
             <input wire:model.live="searchTitle" style="padding-left: 50px;background: #fff;border: 1px solid #1E293B;" type="text" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2 " placeholder="Rechercher un film...">
         </form>
       
-
-        <form wire:submit.prevent="sortBy" style="margin-left: 12px;margin-top:12px">
+        <!-- Formulaire de tri -->
+        <form wire:submit.prevent="sortBy" style="margin-left: 12px; margin-top: 12px; position: relative; display: flex; align-items: center;">
             <select wire:model="selectedGenre" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2" style="width: 200px;border: 1px solid #1E293B;">
                 <option value="">Tous les genres</option>
                 @foreach($genres as $genre)
                     <option value="{{ $genre->genre_id }}">{{ $genre->name }}</option>
                 @endforeach
             </select>
-            <button type="submit" class="btn btn-primary" style="border: 1px solid #1E293B; background: #1E293B; color: #fff;">Trier</button>
+            
+            <button type="submit" class="btn btn-primary" style="border: 1px solid #1E293B; background: #1E293B; color: #fff; margin-left: 12px; height: 40px; border-radius: 6px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="position: relative; width: 20px; margin-right: 12px;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M151.6 469.6C145.5 476.2 137 480 128 480s-17.5-3.8-23.6-10.4l-88-96c-11.9-13-11.1-33.3 2-45.2s33.3-11.1 45.2 2L96 365.7V64c0-17.7 14.3-32 32-32s32 14.3 32 32V365.7l32.4-35.4c11.9-13 32.2-13.9 45.2-2s13.9 32.2 2 45.2l-88 96zM320 480c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320zm0-128c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H320z"/></svg> Trier</button>
         </form>
         
-        
+    
     </div>
     <div id="films-table" class="table-films" style="position: relative; display: inline-grid; justify-content: center;">
         <table>
@@ -94,7 +96,6 @@
                                     <span style="position: relative;margin-left:5px;margin-right:5px">{{__("Visualiser")}}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="position: relative; width: 20px;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>                                    </button>
                                     </a>
-                                    {{$film->genre_ids}}
                                 </div>
                             </div>
 
