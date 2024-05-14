@@ -47,10 +47,15 @@ class Search extends Component
     {
         // Handle sorting action here
     }
-    //"Corrige le bogue des recherches en direct qui ne fonctionnent pas sur les paginations suivantes."
+    //Corrige le bogue des recherches en direct qui ne fonctionnent pas sur les paginations suivantes.
     public function updating($key): void
     {
+        // pour la recherche par "title"
         if ($key === 'searchTitle' || $key === 'searchTitle') {
+            $this->resetPage();
+        }
+        //pour le triage par categorie
+        if ($key === 'selectedGenre' || $key === 'selectedGenre') {
             $this->resetPage();
         }
     }
