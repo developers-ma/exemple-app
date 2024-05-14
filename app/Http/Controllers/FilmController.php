@@ -126,16 +126,4 @@ class FilmController extends Controller
         return redirect()->route('films.index')->with('success', 'Film supprimé avec succès.');
     }
 
-    /**
-     * Affiche les films par genre.
-     *
-     * @param  int  $genre_id
-     * @return \Illuminate\View\View
-     */
-    public function getByGenre(int $genre_id): \Illuminate\View\View
-    {
-        // Récupère les films appartenant à un genre spécifique
-        $films = Film::byGenre($genre_id)->get();
-        return view('films.by_genre', compact('films'));
-    }
 }
