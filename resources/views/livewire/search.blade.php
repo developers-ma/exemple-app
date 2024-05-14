@@ -74,6 +74,7 @@
                                 <!-- Boutons -->
                                 <div style="position: relative; margin: 14px;">
                                     <h1 class="films-title">{{ $film->title }}</h1>
+                                    {{$film->genre_ids}}
                                     <!-- Bouton Supprimer-->
 
                                     <form action="{{ route('film.destroy', $film) }}" method="POST">

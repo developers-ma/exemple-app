@@ -6,11 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\Genre;
 use App\Services\TMDBService;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator; // Importer Validator
 
 class FilmController extends Controller
 {
-   
+    /**
+     * Affiche tous les films.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index(): \Illuminate\View\View
+    {
+        $films = Film::all();
+        return view('films', compact('films'));
+    }
+
     /**
      * Affiche les détails d'un film.
      *
@@ -33,7 +43,7 @@ class FilmController extends Controller
     {
         $tmdbService = new TMDBService();
         $films = $tmdbService->getTrendingMovies();
-    
+
         // Enregistrer les films récupérés depuis l'API dans la base de données
         foreach ($films as $film) {
             $newMovie = Film::updateOrCreate(
@@ -42,23 +52,23 @@ class FilmController extends Controller
                     'title' => $film->title,
                     'description' => $film->description,
                     'image_url' => $film->image_url,
-                    'genre_ids' => json_encode($film->genre_ids) // Convert array to JSON string
+                    'genre_ids' => $film->genre_ids
                 ]
             );
         }
-    
+
         // Récupérer et enregistrer les genres de films depuis l'API dans la base de données
         $tmdbGenres = new TMDBService();
         $genresFromApi = $tmdbGenres->getMovieGenres();
-    
+
         if (empty($genresFromApi)) {
             return false;
         }
-    
+
         foreach ($genresFromApi as $genreData) {
             if (isset($genreData['genre_id']) && isset($genreData['name'])) {
                 $existingGenre = Genre::where('genre_id', $genreData['genre_id'])->first();
-    
+
                 if (!$existingGenre) {
                     $newGenre = new Genre();
                     $newGenre->genre_id = $genreData['genre_id'];
@@ -69,7 +79,6 @@ class FilmController extends Controller
         }
         return redirect()->route('films.index')->with('success', 'Films récupérés depuis l\'API et enregistrés avec succès.');
     }
-    
 
     /**
      * Affiche le formulaire de modification d'un film.
@@ -126,4 +135,16 @@ class FilmController extends Controller
         return redirect()->route('films.index')->with('success', 'Film supprimé avec succès.');
     }
 
+    /**
+     * Affiche les films par genre.
+     *
+     * @param  int  $genre_id
+     * @return \Illuminate\View\View
+     */
+    public function getByGenre(int $genre_id): \Illuminate\View\View
+    {
+        // Récupère les films appartenant à un genre spécifique
+        $films = Film::byGenre($genre_id)->get();
+        return view('films.by_genre', compact('films'));
+    }
 }

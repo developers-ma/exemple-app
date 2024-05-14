@@ -47,7 +47,7 @@ class Search extends Component
     {
         // Handle sorting action here
     }
-    //Corrige le bogue des recherches en direct qui ne fonctionnent pas sur les paginations suivantes.
+    //"Corrige le bogue des recherches en direct qui ne fonctionnent pas sur les paginations suivantes."
     public function updating($key): void
     {
         if ($key === 'searchTitle' || $key === 'searchTitle') {

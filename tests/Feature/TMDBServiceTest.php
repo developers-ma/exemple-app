@@ -23,10 +23,8 @@ class TMDBServiceTest extends TestCase
             'results' => [
                 // Exemple de données d'un film populaire
                 [
-                    'titre' => 'Exemple de film',
-                    // ... autres attributs du film
+                    'title' => 'Exemple de film',
                 ],
-                // ... plus de films
             ],
         ]);
 
@@ -54,9 +52,8 @@ class TMDBServiceTest extends TestCase
                 // Exemple de données d'un genre de film
                 [
                     'id' => 1,
-                    'nom' => 'Action',
+                    'name' => 'Action',
                 ],
-                // ... plus de genres
             ],
         ]);
 
@@ -72,6 +69,5 @@ class TMDBServiceTest extends TestCase
         // Assertion pour vérifier que le résultat est un tableau
         $this->assertIsArray($genres);
 
-        // Optionnel : Ajouter des assertions pour vérifier le contenu spécifique du tableau retourné
     }
 }
