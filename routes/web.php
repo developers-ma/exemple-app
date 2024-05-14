@@ -13,7 +13,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    Route::get('/', [FilmController::class, 'index'])->name('films.index');
+    
+    Route::get('/', function () {
+        return view('films'); // Assuming 'index' is the name of your view file
+    })->name('films.index');
+    
     Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
     Route::get('/fetch-and-store-films', [FilmController::class, 'fetchAndStore'])->name('films.fetchAndStore');
 
