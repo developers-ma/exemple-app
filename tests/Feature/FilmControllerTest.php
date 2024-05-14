@@ -11,6 +11,14 @@ use App\Services\TMDBService;
 use App\Models\Genre;
 use App\Models\User; // Assurez-vous d'importer votre modèle User s'il n'est pas déjà importé
 
+//livewire
+use Livewire\Component;
+use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Database\Factories\GenreFactory;
+
 class FilmControllerTest extends TestCase
 {
     use RefreshDatabase;
@@ -168,6 +176,35 @@ class FilmControllerTest extends TestCase
 
         // Asserting the film is deleted from the database
         $this->assertNull(Film::find($film->id));
+    }
+    
+    /**
+     * Livewire test
+     *
+     */
+    public function it_searches_for_films_by_title_and_genre()
+    {
+        // Create genres
+        $genre1 = Genre::factory()->create(['genre_id' => 1]);
+        $genre2 = Genre::factory()->create(['genre_id' => 2]);
+
+        // Create films with genre_ids
+        $film1 = Film::factory()->create(['title' => 'Film 1', 'genre_ids' => [1]]);
+        $film2 = Film::factory()->create(['title' => 'Film 2', 'genre_ids' => [1]]);
+        $film3 = Film::factory()->create(['title' => 'Film 3', 'genre_ids' => [2]]);
+
+        Livewire::test('search')
+            ->assertSee($film1->title) // Assert film 1 is visible
+            ->assertSee($film2->title) // Assert film 2 is visible
+            ->assertSee($film3->title) // Assert film 3 is visible
+            ->set('searchTitle', 'Film 1') // Set search title to filter films
+            ->assertSee($film1->title) // Assert film 1 is still visible
+            ->assertDontSee($film2->title) // Assert film 2 is not visible after search
+            ->assertDontSee($film3->title) // Assert film 3 is not visible after search
+            ->set('selectedGenre', $genre1->genre_id) // Set selected genre to filter films
+            ->assertSee($film1->title) // Assert film 1 is still visible after filtering by genre
+            ->assertDontSee($film2->title) // Assert film 2 is not visible after filtering by genre
+            ->assertDontSee($film3->title); // Assert film 3 is not visible after filtering by genre
     }
     
 }

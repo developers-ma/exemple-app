@@ -8,13 +8,6 @@ use App\Models\Genre;
 use App\Services\TMDBService;
 use Illuminate\Support\Facades\Validator;
 
-//livewire
-use Livewire\Component;
-use Livewire\WithPagination;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 class FilmController extends Controller
 {
    
@@ -121,6 +114,8 @@ class FilmController extends Controller
     /**
      * Supprime un film de la base de données.
      *
+     * @param  int  $movie_id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(int $movie_id): \Illuminate\Http\RedirectResponse
     {
@@ -132,28 +127,15 @@ class FilmController extends Controller
     }
 
     /**
-     * Livewire test
+     * Affiche les films par genre.
      *
+     * @param  int  $genre_id
+     * @return \Illuminate\View\View
      */
-    public function testSearchComponent()
+    public function getByGenre(int $genre_id): \Illuminate\View\View
     {
-        // Créer des genres
-        $genre1 = Genre::factory()->create();
-        $genre2 = Genre::factory()->create();
-
-        // Créer des films
-        $film1 = Film::factory()->create(['title' => 'Film 1', 'genre_ids' => json_encode([$genre1->id])]);
-        $film2 = Film::factory()->create(['title' => 'Film 2', 'genre_ids' => json_encode([$genre2->id])]);
-
-        // Monter le composant Livewire en tant qu'utilisateur
-        Livewire::actingAs($user)
-        ->test(\App\Http\Livewire\Search::class)
-        ->assertSee($film1->title)
-        ->assertSee($film2->title)
-        ->set('searchTitle', 'Film 1') // Définir le titre de recherche pour filtrer les films
-        ->assertSee($film1->title) // Vérifier que le film 1 est toujours visible
-        ->assertDontSee($film2->title); // Vérifier que le film 2 n'est pas visible
-
+        // Récupère les films appartenant à un genre spécifique
+        $films = Film::byGenre($genre_id)->get();
+        return view('films.by_genre', compact('films'));
     }
-
 }
