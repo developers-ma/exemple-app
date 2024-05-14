@@ -144,4 +144,30 @@ class FilmControllerTest extends TestCase
         $this->assertEquals($newData['description'], $updatedFilm->description);
         $this->assertEquals($newData['image_url'], $updatedFilm->image_url);
     }
+
+    /**
+     * Supprime un film de la base de données.
+     *
+     */
+    public function testDestroy()
+    {
+        // Create a user
+        $user = User::factory()->create();
+
+        // Create a film
+        $film = Film::factory()->create();
+
+        // Generating URL for destroy route
+        $destroyUrl = route('film.destroy', ['id' => $film->id]);
+
+        // Acting as a user and sending a DELETE request
+        $response = $this->actingAs($user)->delete($destroyUrl);
+
+        // Asserting the response redirects to the films index route
+        $response->assertRedirect(route('films.index'));
+
+        // Asserting the film is deleted from the database
+        $this->assertNull(Film::find($film->id));
+    }
+    
 }
