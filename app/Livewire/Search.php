@@ -1,34 +1,57 @@
 <?php
-
 namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Film;
-use Livewire\Attributes\Title;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\Genre;
+use Illuminate\Support\Facades\DB;
 
 class Search extends Component
 {
     use WithPagination;
 
     public $searchTitle = '';
+    public $selectedGenre;
+    public $genres;
 
+    public function mount()
+    {
+        // Fetch all genres from the database
+        $this->genres = Genre::all();
+    }
 
     public function render()
     {
+        // Split the selected genre into an array
+        $selectedGenreArray = explode(',', $this->selectedGenre);
+
+        // Query to retrieve films
         $films = Film::query()
-        ->when($this->searchTitle !== '', fn(Builder $query) => $query->where('title', 'like', '%'. $this->searchTitle .'%')) 
-        ->paginate(10);
+            ->when($this->searchTitle !== '', function (Builder $query) {
+                $query->where('title', 'like', '%' . $this->searchTitle . '%');
+            })
+            ->when($this->selectedGenre, function ($query, $selectedGenre) {
+                return $query->whereJsonContains('genre_ids', (int)$selectedGenre);
+            })
+            ->paginate(10)
+            ->withQueryString(); // Ensure that query parameters are included in pagination links
 
         return view('livewire.search', [
-
-            // 'films' => Film::where('title', $this->searchTitle)->get(),
-
-            'films' => $films
+            'films' => $films,
         ]);
-        
     }
 
- 
+    public function sortBy()
+    {
+        // Handle sorting action here
+    }
+    //Corrige le bogue des recherches en direct qui ne fonctionnent pas sur les paginations suivantes.
+    public function updating($key): void
+    {
+        if ($key === 'searchTitle' || $key === 'searchTitle') {
+            $this->resetPage();
+        }
+    }
 }
