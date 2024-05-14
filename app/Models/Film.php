@@ -23,12 +23,13 @@ class Film extends Model
         return $query->where('genre_id', $genre_id);
     }
 
-     /**
+    /**
      * Récupère les genres associés à ce film.
      */
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
     }
-    
+
+   
 }

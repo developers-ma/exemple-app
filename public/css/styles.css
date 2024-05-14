@@ -4147,7 +4147,6 @@ span.flatpickr-weekday {
         align-items: center;
         flex-wrap: wrap;
         min-width: 300px;
-        max-width: 400px;
         padding: 0px !important;
     }
 }
