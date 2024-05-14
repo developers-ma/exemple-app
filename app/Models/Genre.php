@@ -11,4 +11,12 @@ class Genre extends Model
 
     protected $fillable = ['genre_id','name'];
 
+     /**
+     * Récupère les films associés à ce genre.
+     */
+    public function films()
+    {
+        return $this->belongsToMany(Film::class);
+    }
+
 }

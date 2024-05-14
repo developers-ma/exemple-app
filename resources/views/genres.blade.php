@@ -30,7 +30,7 @@
                     Les Catégories
                 </h1>
         
-                <table id="categories-table" class="table-films" style="position: relative; display: inline-grid; justify-content: center;">
+                <table id="genres-table" class="table-films" style="position: relative; display: inline-grid; justify-content: center;">
                     <thead>
                         <tr>
                             <th>Catégorie id</th>
@@ -38,13 +38,13 @@
                         </tr>
                     </thead>
                     <tbody style="position: relative; display: inline-grid; justify-content: center; align-items: center; align-content: space-evenly; justify-items: stretch;">
-                        @foreach ($categories as $categorie)
+                        @foreach ($genres as $genre)
                         <tr>
                             <td class="">
-                                {{ $categorie->genre_id }}  
+                                {{ $genre->genre_id }}  
                             </td>
                             <td class="">
-                                {{ $categorie->name }} 
+                                {{ $genre->name }} 
                             </td>
 
                             
@@ -64,7 +64,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Initialize DataTable
-      var table = $('#categories-table').DataTable({
+      var table = $('#genres-table').DataTable({
           // Hide search input and show entries dropdown
           lengthChange: false,
           pageLength: 6, // Adjust this number as needed
@@ -80,16 +80,16 @@
       });
   
       
-    var dataTable = $('#categories-table').DataTable();
+    var dataTable = $('#genres-table').DataTable();
 
     // Find the input element within the filter div and set its placeholder attribute
-    $('#categories-table_filter input').attr('placeholder', 'Rechercher');
+    $('#genres-table_filter input').attr('placeholder', 'Rechercher');
 
     // Add a search icon before the input element
-    $('#categories-table_filter label').prepend('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="position: absolute; width: 20px; margin-left: 12px; margin-top: 8px;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>');
+    $('#genres-table_filter label').prepend('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="position: absolute; width: 20px; margin-left: 12px; margin-top: 8px;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>');
 
     // Remove the text "Search:" by finding the label element and removing its contents
-    $('#categories-table_filter label').contents().filter(function() {
+    $('#genres-table_filter label').contents().filter(function() {
         return this.nodeType === 3; // Node.TEXT_NODE
     }).remove();
 

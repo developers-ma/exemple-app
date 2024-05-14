@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmController;
-use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\GenreController;
 
 
 
@@ -13,7 +13,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/', [FilmController::class, 'index'])->name('films.index');
-    Route::get('/categories', [CategorieController::class, 'index'])->name('categories.index');
+    Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
     Route::get('/fetch-and-store-films', [FilmController::class, 'fetchAndStore'])->name('films.fetchAndStore');
 
     Route::get('/film/{id}', [FilmController::class, 'details'])->name('film.details');
