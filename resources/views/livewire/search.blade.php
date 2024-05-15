@@ -22,21 +22,21 @@
     </div>
     @endif
 
-    <h1 class="films-page-title" style="text-wrap: nowrap;">
+    <h1 class="page-title" style="text-wrap: nowrap;">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="position: relative;width:50px;margin-right:12px"><path fill="#475565" d="M384 160c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32V288c0 17.7-14.3 32-32 32s-32-14.3-32-32V205.3L342.6 374.6c-12.5 12.5-32.8 12.5-45.3 0L192 269.3 54.6 406.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160c12.5-12.5 32.8-12.5 45.3 0L320 306.7 466.7 160H384z"/></svg>            
    {{__("Tendance du jour")}}
     </h1>
 
 <div style="position: relative; display: inline-grid;">
-    <div class="p-4" style="position: relative; display: flex; justify-content: center; flex-wrap: wrap; align-items: start; margin: 12px;">
+    <div class="p-4" style="position: relative; display: flex; justify-content: center; flex-wrap: wrap; align-items: start; margin: 5px;">
        <!-- Formulaire de recherche -->
-        <form style="margin-top: 12px !important; margin: 5px;">
+        <form style="margin-top: 5px !important; margin: 5px;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 20px; position: absolute; margin-top: 10px; margin-left: 10px;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
             <input wire:model.live="searchTitle" style="padding-left: 50px;background: #fff;border: 1px solid #1E293B;width: 100%; min-width: 300px;" type="text" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2 " placeholder="Rechercher un film..." autofocus>
         </form>
       
         <!-- Formulaire de tri -->
-        <form wire:submit.prevent="sortBy" style="margin-left: 5px; margin-top: 12px; position: relative; display: flex; align-items: center;">
+        <form wire:submit.prevent="sortBy" style="margin-left: 5px; margin-top: 5px; position: relative; display: flex; align-items: center;">
             <select wire:model="selectedGenre" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2" style="width: 200px;border: 1px solid #1E293B;background-color: #fff;" aria-label="Les genres">
                 <option value="">{{__("Tous les genres")}}</option>
                 @foreach($genres as $genre)
