@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator; // Importer Validator
 use App\Http\Requests\FilmRequest;
 use App\Http\Requests\GenreRequest;
 use App\Http\Requests\FilmUpdateRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class FilmController extends Controller
 {
@@ -20,7 +21,7 @@ class FilmController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $films = Film::all();
+        $films = Film::all(10);
         return view('films', compact('films'));
     }
 
@@ -33,8 +34,13 @@ class FilmController extends Controller
      */
     public function details(Request $request, int $id): \Illuminate\View\View
     {
-        $filmDetail = Film::find($id);
-        return view('details', compact('filmDetail'));
+        // Essaie de trouver le détail du film avec l'ID spécifié
+        try {
+            $filmDetail = Film::findOrFail($id); // Recherche le film par ID et lève une exception si aucun film n'est trouvé
+            return view('details', compact('filmDetail')); // Renvoie la vue des détails du film avec les données du film
+        } catch (ModelNotFoundException $e) {
+            abort(404); // Renvoie une réponse HTTP 404 si aucun film n'est trouvé avec l'ID spécifié
+        }
     }
 
     /**
