@@ -20,6 +20,7 @@ class Search extends Component
     {
         // Fetch all genres from the database
         $this->genres = Genre::all();
+
     }
 
     public function render()
@@ -40,6 +41,7 @@ class Search extends Component
 
         return view('livewire.search', [
             'films' => $films,
+
         ]);
     }
 

@@ -1,3 +1,6 @@
-<x-app-layout>
+@extends('layouts.app')
+@section('title','TENDANCE DU JOUR | Movies App')
+
+@section('content')
 @livewire("search")
-</x-app-layout>
+@endsection

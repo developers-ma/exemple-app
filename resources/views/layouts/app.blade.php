@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -33,42 +33,43 @@
     x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"
     x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))"  >
 
-        <script>
-            if (localStorage.getItem('sidebar-expanded') == 'true') {
-                document.querySelector('body').classList.add('sidebar-expanded');
-            } else {
-                document.querySelector('body').classList.remove('sidebar-expanded');
-            }
-        </script>
+    <script>
+        if (localStorage.getItem('sidebar-expanded') == 'true') {
+            document.querySelector('body').classList.add('sidebar-expanded');
+        } else {
+            document.querySelector('body').classList.remove('sidebar-expanded');
+        }
+    </script>
 
-        <x-banner />
+    <x-banner />
 
-        <div class="min-h-screen bg-gray-100" style="overflow: hidden">
+    <div class="min-h-screen bg-gray-100" style="overflow: hidden">
 
-                    <x-app.header />
+        <x-app.header />
 
-                    <!-- Page Heading -->
-                    @if (isset($header))
-                        <header class="bg-white shadow">
-                            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                                {{ $header }}
-                            </div>
-                        </header>
-                    @endif
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
 
-                        
-                    <!-- Page Content -->
-                    <main style="position: relative; display: flex;">
-                        <x-app.sidebar />
+            
+        <!-- Page Content -->
+        <main style="position: relative; display: flex;">
+            <x-app.sidebar />
 
-                        {{ $slot }}
-                    </main>
-      
-        </div>
+            {{-- {{ $slot }} --}}
+            @yield("content")
+        </main>
+    
+    </div>
 
-        @stack('modals')
+    @stack('modals')
 
-        @livewireScripts
+    @livewireScripts
         
     </body>
 </html>

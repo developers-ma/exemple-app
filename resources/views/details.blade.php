@@ -1,4 +1,10 @@
-<x-app-layout>
+
+
+@extends('layouts.app')
+@section('title', $filmDetail->title . ' | Movies App')
+
+
+@section('content')
     <div class="films-content" >
 
                    <!-- Error message-->
@@ -64,6 +70,4 @@
 
     </div>
 
-
-
-</x-app-layout>
+@endsection
