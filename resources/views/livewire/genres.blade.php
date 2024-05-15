@@ -1,7 +1,27 @@
 <div class="films-content">
+    <!-- Message d'erreur-->
+    @if ($errors->any())
+    <div style="position: relative;display:flex;justify-content:center">
 
-    <!-- Contenu des films -->
-    <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+    <div class="alert alert-danger">
+    <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+    </ul>
+    </div>
+    </div>
+
+    @endif
+    <!-- Message de succès-->
+    @if(session('success'))
+    <div style="position: relative;display:flex;justify-content:center">
+    <div class="alert alert-success" style="display: flex; justify-content: center; max-width: 500px;font-size:16px">
+    <span> {{ session('success') }}</span>
+    </div>
+    </div>
+    @endif
+    <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden" style="border-radius: 12px;">
         <div class="p-4">
             <!-- Formulaire de recherche de genre -->
             <form>
@@ -14,8 +34,8 @@
                 <!-- En-tête du tableau -->
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-4 py-3">Catégories</th>
-                        <th scope="col" class="px-4 py-3">Identifiant</th>
+                        <th scope="col" class="px-4 py-3">{{__("Catégories")}}</th>
+                        <th scope="col" class="px-4 py-3">{{__("Identifiant")}}</th>
                     </tr>
                 </thead>
                 <!-- Corps du tableau -->
@@ -29,7 +49,7 @@
                         <!-- Aucun catégorie trouvé -->
                         <tr>
                             <td class="px-6 py-4 text-sm" colspan="3">
-                                Aucune catégorie n'a été trouvée.
+                                {{__("Aucune catégorie n'a été trouvée.")}}
                             </td>
                         </tr>
                     @endforelse
@@ -37,7 +57,6 @@
             </table>
         </div>
     </div>
-
     <!-- Pagination -->
     <div style="position: relative; margin-top: 20px;">
         {{ $genres->links() }}

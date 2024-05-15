@@ -20,12 +20,11 @@
     <span> {{ session('success') }}</span>
     </div>
     </div>
-
     @endif
 
     <h1 class="films-page-title" style="text-wrap: nowrap;">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="position: relative;width:50px;margin-right:12px"><path fill="#475565" d="M384 160c-17.7 0-32-14.3-32-32s14.3-32 32-32H544c17.7 0 32 14.3 32 32V288c0 17.7-14.3 32-32 32s-32-14.3-32-32V205.3L342.6 374.6c-12.5 12.5-32.8 12.5-45.3 0L192 269.3 54.6 406.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160c12.5-12.5 32.8-12.5 45.3 0L320 306.7 466.7 160H384z"/></svg>            
-    Tendance du jour
+   {{__("Tendance du jour")}}
     </h1>
 
 <div style="position: relative; display: inline-grid;">
@@ -39,7 +38,7 @@
         <!-- Formulaire de tri -->
         <form wire:submit.prevent="sortBy" style="margin-left: 12px; margin-top: 12px; position: relative; display: flex; align-items: center;">
             <select wire:model="selectedGenre" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2" style="width: 200px;border: 1px solid #1E293B;background-color: #fff;">
-                <option value="">Tous les genres</option>
+                <option value="">{{__("Tous les genres")}}</option>
                 @foreach($genres as $genre)
                     <option value="{{ $genre->genre_id }}">{{ $genre->name }}</option>
                 @endforeach
@@ -55,7 +54,7 @@
             <!-- En-tête du tableau -->
             <thead style="display: none;">
                 <tr>
-                    <th>Film</th>
+                    <th>{{__("Films")}}</th>
                 </tr>
             </thead>
             <!-- Corps du tableau -->
@@ -105,14 +104,17 @@
                 @empty
                     <tr>
                         <td class="px-6 py-4 text-sm" colspan="3">
-                            Aucun film n'a été trouvé.
+                            {{__("Aucun film n'a été trouvé.")}}
                         </td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
-    <!-- Liens de pagination -->
-    {{ $films->links() }}
+
+      <!-- Pagination -->
+      <div style="position: relative; margin-top: 20px; justify-content: center; display: flex;">
+        {{ $films->links() }}
+    </div>
 </div>
 </div>
