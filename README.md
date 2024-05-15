@@ -1,6 +1,6 @@
 # Laravel App pour interagir avec l'API themoviedb
 
-![App preview](https://developer.ma/images/goandev-app.png)
+![App preview](https://developer.ma/images/movie-app.png)
 
 **Une application Laravel** pour récupérer les films tendance du jour depuis l'API Utilisant Laravel 11.x, Laravel/Jetstream, Livewire et le package GuzzleHTTP/Guzzle.
 
@@ -72,7 +72,7 @@ php artisan make:command FetchAndStoreFilms
 
 Pour importer les films, cliquez sur le bouton vert 'API/Mettre à jour' situé dans l'en-tête.
 
-![Api preview](https://developer.ma/images/api-action.png)
+![Api preview](https://developer.ma/images/movie-app-2.png)
 
 Pour tester la tâche planifiée, exécutez la commande :
 
