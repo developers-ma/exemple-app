@@ -73,16 +73,18 @@ class FilmController extends Controller
         return false;
     }
 
-    // Enregistrer les genres récupérés depuis l'API dans la base de données
-    foreach ($genresFromApi as $genre) {
-        $existingGenre = Genre::where('genre_id', $genre['genre_id'])->first();
+// Enregistrer les genres récupérés depuis l'API dans la base de données
+foreach ($genresFromApi as $genre) {
+    $existingGenre = Genre::where('genre_id', $genre['genre_id'])->first();
 
-        if (!$existingGenre) {
-            $newGenre = new Genre();
-            $newGenre->fill($validatedGenreData); // Utilisation des données validées pour créer un nouveau genre
-            $newGenre->save();
-        }
+    if (!$existingGenre) {
+        $newGenre = new Genre();
+        $newGenre->name = $genre['name']; // Assigner la valeur du nom récupéré de l'API
+        $newGenre->genre_id = $genre['genre_id']; // Assigner la valeur du genre_id récupéré de l'API
+        $newGenre->fill($validatedGenreData); // Utilisation des données validées pour créer un nouveau genre
+        $newGenre->save();
     }
+}
 
     return redirect()->route('films.index')->with('success', 'Films récupérés depuis l\'API et enregistrés avec succès.');
 }
