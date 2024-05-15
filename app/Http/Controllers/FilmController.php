@@ -9,6 +9,7 @@ use App\Services\TMDBService;
 use Illuminate\Support\Facades\Validator; // Importer Validator
 use App\Http\Requests\FilmRequest;
 use App\Http\Requests\GenreRequest;
+use App\Http\Requests\FilmUpdateRequest;
 
 class FilmController extends Controller
 {
@@ -105,24 +106,12 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
+    public function update(FilmUpdateRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
-        // Validation des données du formulaire
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'image_url' => 'required|url',
-        ]);
-
-        // Redirection avec les erreurs de validation si nécessaire
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
         // Mise à jour des informations du film dans la base de données
         $film = Film::findOrFail($id);
-        $film->update($request->all());
-
+        $film->update($request->validated());
+    
         return redirect()->route('films.index')->with('success', 'Film mis à jour avec succès.');
     }
 
