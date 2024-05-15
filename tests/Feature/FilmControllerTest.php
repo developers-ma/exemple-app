@@ -64,8 +64,14 @@ class FilmControllerTest extends TestCase
         Genre::truncate();
     
         // Exécuter la méthode fetchAndStore
-        $response = $this->get('/fetch-and-store-films');
+        $response = $this->get(route('films.fetchAndStore'));
+        
+        // Vérifier que la réponse redirige
+        $response->assertRedirect(route('films.index'));
     
+        // Vérifier que le message de succès est présent
+        $response->assertSessionHas('success', 'Films récupérés depuis l\'API et enregistrés avec succès.');
+        
         // Vérifier que les films sont enregistrés dans la base de données avec des movie_id uniques
         $filmsCount = Film::count();
         $uniqueMovieIdsCount = Film::distinct('movie_id')->count();
