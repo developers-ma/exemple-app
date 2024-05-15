@@ -4,6 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use App\Http\Controllers\FilmController;
+use App\Http\Requests\FilmRequest;
+use App\Http\Requests\GenreRequest;
+use App\Services\TMDBService;
+
 class FetchAndStoreFilms extends Command
 {
     /**
@@ -23,9 +28,13 @@ class FetchAndStoreFilms extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(FilmController $filmController)
     {
-        // Call the fetchAndStore() method here
-        \App::make(\App\Http\Controllers\FilmController::class)->fetchAndStore();
+        // Resolve the dependencies and call the fetchAndStore method
+        $filmRequest = app()->make(FilmRequest::class);
+        $genreRequest = app()->make(GenreRequest::class);
+        $tmdbService = app()->make(TMDBService::class);
+
+        $filmController->fetchAndStore($filmRequest, $genreRequest, $tmdbService);
     }
 }

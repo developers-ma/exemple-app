@@ -12,7 +12,7 @@ class FilmRequest extends FormRequest
     public function authorize(): bool
     {
          // Vérifie si l'utilisateur est authentifié
-         return auth()->check();
+         return true;
     }
 
     /**
