@@ -23,8 +23,8 @@ class GenreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'genre_id' => 'required|integer',
-            'name' => 'required|string|max:255',
+            'genre_id' => 'integer',
+            'name' => 'string|max:255',
         ];
     }
 }

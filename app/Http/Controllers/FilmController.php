@@ -7,6 +7,8 @@ use App\Models\Film;
 use App\Models\Genre;
 use App\Services\TMDBService;
 use Illuminate\Support\Facades\Validator; // Importer Validator
+use App\Http\Requests\FilmRequest;
+use App\Http\Requests\GenreRequest;
 
 class FilmController extends Controller
 {
@@ -39,46 +41,50 @@ class FilmController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|bool
      */
-    public function fetchAndStore(): \Illuminate\Http\RedirectResponse|bool
-    {
-        $tmdbService = new TMDBService();
-        $films = $tmdbService->getTrendingMovies();
+    public function fetchAndStore(FilmRequest $filmRequest, GenreRequest $genreRequest, TMDBService $tmdbService): \Illuminate\Http\RedirectResponse|bool
+{
+    // Valider les données des films
+    $validatedFilmData = $filmRequest->validated();
 
-        // Enregistrer les films récupérés depuis l'API dans la base de données
-        foreach ($films as $film) {
-            $newMovie = Film::updateOrCreate(
-                ['movie_id' => $film->movie_id],
-                [
-                    'title' => $film->title,
-                    'description' => $film->description,
-                    'image_url' => $film->image_url,
-                    'genre_ids' => $film->genre_ids
-                ]
-            );
-        }
+    // Valider les données des genres
+    $validatedGenreData = $genreRequest->validated();
 
-        // Récupérer et enregistrer les genres de films depuis l'API dans la base de données
-        $tmdbGenres = new TMDBService();
-        $genresFromApi = $tmdbGenres->getMovieGenres();
+    // Récupérer les films populaires depuis l'API TMDB
+    $films = $tmdbService->getTrendingMovies();
 
-        if (empty($genresFromApi)) {
-            return false;
-        }
-
-        foreach ($genresFromApi as $genreData) {
-            if (isset($genreData['genre_id']) && isset($genreData['name'])) {
-                $existingGenre = Genre::where('genre_id', $genreData['genre_id'])->first();
-
-                if (!$existingGenre) {
-                    $newGenre = new Genre();
-                    $newGenre->genre_id = $genreData['genre_id'];
-                    $newGenre->name = $genreData['name'];
-                    $newGenre->save();
-                }
-            }
-        }
-        return redirect()->route('films.index')->with('success', 'Films récupérés depuis l\'API et enregistrés avec succès.');
+    // Enregistrer les films récupérés depuis l'API dans la base de données
+    foreach ($films as $film) {
+        $newMovie = Film::updateOrCreate(
+            ['movie_id' => $film['movie_id']], // Utilisation de la clé 'movie_id' pour vérifier l'existence du film
+            [
+                'title' => $film['title'],
+                'description' => $film['description'],
+                'image_url' => $film['image_url'],
+                'genre_ids' => $film['genre_ids']
+            ] + $validatedFilmData // Fusion des données validées avec les données de l'API
+        );
     }
+
+    // Récupérer les genres de films depuis l'API TMDB
+    $genresFromApi = $tmdbService->getMovieGenres();
+
+    if (empty($genresFromApi)) {
+        return false;
+    }
+
+    // Enregistrer les genres récupérés depuis l'API dans la base de données
+    foreach ($genresFromApi as $genre) {
+        $existingGenre = Genre::where('genre_id', $genre['genre_id'])->first();
+
+        if (!$existingGenre) {
+            $newGenre = new Genre();
+            $newGenre->fill($validatedGenreData); // Utilisation des données validées pour créer un nouveau genre
+            $newGenre->save();
+        }
+    }
+
+    return redirect()->route('films.index')->with('success', 'Films récupérés depuis l\'API et enregistrés avec succès.');
+}
 
     /**
      * Affiche le formulaire de modification d'un film.
