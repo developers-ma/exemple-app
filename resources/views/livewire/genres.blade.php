@@ -21,7 +21,7 @@
     </div>
     </div>
     @endif
-    <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden" style="border-radius: 12px;">
+    <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden" style="border-radius: 12px;width: 100%; min-width: 300px;">
         <div class="p-4">
             <!-- Formulaire de recherche de genre -->
             <form>
@@ -58,7 +58,7 @@
         </div>
     </div>
     <!-- Pagination -->
-    <div style="position: relative; margin-top: 20px;">
+    <div style="position: relative; margin-top: 20px;display: flex; justify-content: center;">
         {{ $genres->links() }}
     </div>
 </div>

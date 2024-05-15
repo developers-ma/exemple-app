@@ -4108,6 +4108,11 @@ span.flatpickr-weekday {
     border-radius: 25px !important;
     width: 250px !important;
 }
+p.text-sm.text-gray-700.leading-5 {
+    position: relative;
+    margin-right: 12px;
+}
+
 /*media query */
 @media (max-width: 765px) {
     .square-crop {

@@ -37,7 +37,7 @@
       
         <!-- Formulaire de tri -->
         <form wire:submit.prevent="sortBy" style="margin-left: 12px; margin-top: 12px; position: relative; display: flex; align-items: center;">
-            <select wire:model="selectedGenre" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2" style="width: 200px;border: 1px solid #1E293B;background-color: #fff;">
+            <select wire:model="selectedGenre" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2" style="width: 200px;border: 1px solid #1E293B;background-color: #fff;" aria-label="Les genres">
                 <option value="">{{__("Tous les genres")}}</option>
                 @foreach($genres as $genre)
                     <option value="{{ $genre->genre_id }}">{{ $genre->name }}</option>

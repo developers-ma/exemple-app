@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $film->title . ' | Movies App')
+@section('description', $film->description)
 
 @section('content')
 <div class="films-content" >

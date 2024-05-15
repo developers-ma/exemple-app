@@ -27,7 +27,7 @@
                 </svg>
             </button>
             <!-- Logo -->
-            <a class="block" href="{{ route('films.index') }}">
+            <a class="block" href="{{ route('films.index') }}" aria-label="Movies App Logo">
                 <svg width="32" height="32" viewBox="0 0 32 32">
                     <defs>
                         <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
