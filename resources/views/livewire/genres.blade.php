@@ -24,7 +24,7 @@
     <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden" style="border-radius: 12px;width: 100%; min-width: 300px;">
         <div class="p-4">
             <!-- Formulaire de recherche de genre -->
-            <form>
+            <form  @submit.prevent>
                 <input wire:model.live="genreTitle" type="text" class="bg-gray-100 border-2 border-gray-200 rounded-lg p-2 w-full" placeholder="Rechercher un genre...">
             </form>
         </div>
