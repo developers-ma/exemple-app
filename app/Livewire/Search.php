@@ -36,7 +36,7 @@ class Search extends Component
             ->when($this->selectedGenre, function ($query, $selectedGenre) {
                 return $query->whereJsonContains('genre_ids', (int)$selectedGenre);
             })
-            ->orderBy('created_at', 'desc') // Trier par ID
+            ->orderBy('created_at', 'desc') // Trier par Date
             ->paginate(10)
             ->withQueryString(); // Ensure that query parameters are included in pagination links
 

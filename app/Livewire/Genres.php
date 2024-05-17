@@ -21,12 +21,10 @@ class Genres extends Component
     {
         $genres = Genre::query()
         ->when($this->genreTitle !== '', fn(Builder $query) => $query->where('name', 'like', '%'. $this->genreTitle .'%')) 
-        ->orderBy('created_at', 'desc') // Trier par ID
+        ->orderBy('created_at', 'desc') // Trier par date
         ->paginate(10);
 
         return view('livewire.genres', [
-
-            // 'genres' => Film::where('title', $this->genreTitle)->get(),
 
             'genres' => $genres
         ]);
